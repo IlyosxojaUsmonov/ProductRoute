@@ -6,7 +6,7 @@ import About from "./pages/About/About";
 import Faq from "./pages/FAQ/Faq";
 import Home from "./pages/Home/Home";
 import Products from "./pages/Products/Products";
-import Notfound from "./pages/Notfound/Notfound";
+import Notfound from "./pages/NotFound/Notfound";
 import Login from "./auth/Login/Login";
 import Register from "./auth/Register/Register";
 import { Route, Routes } from "react-router-dom";
