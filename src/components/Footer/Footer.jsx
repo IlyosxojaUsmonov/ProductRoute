@@ -7,7 +7,6 @@ function Footer() {
       <div className="footer-container">
         <div className="footer-logo">
           <h2>MyBrand</h2>
-          <p>Modern & Professional React Website</p>
         </div>
 
         <div className="footer-links">

@@ -1,41 +1,62 @@
 import React from "react";
 import "./Products.css";
+import { useNavigate } from "react-router-dom";
 
 function Products() {
-  const products = [
+  const navigate = useNavigate();
+
+  const rooms = [
     {
       id: 1,
-      title: "Web Development",
-      desc: "Zamonaviy va tezkor web saytlar yaratish xizmati.",
+      icon: "◈",
+      title: "Standard Xona",
+      desc: "Qulay va zamonaviy jihozlangan xona. Shahar manzarasi, king-size to'shak va bepul Wi-Fi.",
+      price: "from $80 / kecha",
     },
     {
       id: 2,
-      title: "UI/UX Design",
-      desc: "Foydalanuvchi uchun qulay va chiroyli dizayn.",
+      icon: "◇",
+      title: "Deluxe Xona",
+      desc: "Keng va hashamatli xona. Jacuzzi, premium minibar va shaxsiy konsyerj xizmati.",
+      price: "from $150 / kecha",
     },
     {
       id: 3,
-      title: "E-commerce",
-      desc: "Online do‘kon va to‘lov tizimlari integratsiyasi.",
+      icon: "✦",
+      title: "Suite",
+      desc: "Alohida yashash xonasi, panorama manzara va VIP mehmon xizmatlari bilan to'liq suite.",
+      price: "from $280 / kecha",
     },
     {
       id: 4,
-      title: "SEO Optimization",
-      desc: "Saytingizni Google qidiruv tizimida yuqoriga olib chiqish.",
+      icon: "♦",
+      title: "Presidential Suite",
+      desc: "Eng yuqori darajadagi hashamat. Xususiy terassa, butler xizmati va maxsus qabul xonasi.",
+      price: "from $600 / kecha",
     },
   ];
 
   return (
     <section className="products">
       <div className="products-container">
-        <h1 className="products-title">Our Products</h1>
+        <p className="products-eyebrow">✦ Xonalarimiz</p>
+        <h1 className="products-title">
+          Xona va <span>Suite</span>lar
+        </h1>
+        <p className="products-subtitle">
+          Har bir mehmonimiz uchun alohida comfort va hashamat tayyorlanган.
+        </p>
 
         <div className="products-grid">
-          {products.map((item) => (
+          {rooms.map((item) => (
             <div className="product-card" key={item.id}>
+              <span className="card-icon">{item.icon}</span>
               <h3>{item.title}</h3>
               <p>{item.desc}</p>
-              <button className="product-btn">Learn More</button>
+              <div className="card-footer">
+                <span className="card-price">{item.price}</span>
+                
+              </div>
             </div>
           ))}
         </div>

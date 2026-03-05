@@ -1,74 +1,229 @@
-/* ===== ABOUT SECTION ===== */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap");
+
+:root {
+  --bg: #0a0a0f;
+  --surface: #111118;
+  --border: rgba(255, 255, 255, 0.07);
+  --accent: #c9a96e;
+  --accent-glow: rgba(201, 169, 110, 0.3);
+  --text-primary: #f0ede8;
+  --text-muted: rgba(240, 237, 232, 0.45);
+}
+
+/* ── Section ── */
 .about {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
-  color: #fff;
-  padding: 120px 20px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(
+      ellipse 80% 60% at 0% 50%,
+      rgba(201, 169, 110, 0.08) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 100% 50%,
+      rgba(100, 80, 180, 0.05) 0%,
+      transparent 60%
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='0.5' fill='rgba(255,255,255,0.04)'/%3E%3C/svg%3E");
+  font-family: "DM Sans", sans-serif;
+  padding: 6rem 1.5rem;
 }
 
-/* ===== CONTAINER ===== */
+/* ── Container ── */
 .about-container {
   max-width: 1100px;
+  width: 100%;
   margin: 0 auto;
-  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 4rem;
 }
 
-/* ===== TEXT ===== */
-.about-text h1 {
-  font-size: 2.8rem;
-  margin-bottom: 20px;
-  background: linear-gradient(90deg, #00f5ff, #4facfe);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* ── Text ── */
+.about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  animation: fadeUp 0.7s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.about-eyebrow {
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.85;
+}
+
+.about-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.about-title span {
+  font-style: italic;
+  color: var(--accent);
 }
 
 .about-text p {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: #ffffffcc;
-  margin-bottom: 15px;
+  font-size: 0.92rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  line-height: 1.8;
+  letter-spacing: 0.01em;
 }
 
-/* ===== STATS ===== */
-.about-stats {
-  margin-top: 60px;
+/* ── Badges ── */
+.about-badges {
   display: flex;
-  justify-content: center;
-  gap: 40px;
   flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.badge {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--accent);
+  border: 1px solid rgba(201, 169, 110, 0.25);
+  background: rgba(201, 169, 110, 0.07);
+  border-radius: 20px;
+  padding: 0.35rem 0.85rem;
+  letter-spacing: 0.03em;
+  transition:
+    background 0.25s,
+    box-shadow 0.25s;
+}
+
+.badge:hover {
+  background: rgba(201, 169, 110, 0.13);
+  box-shadow: 0 0 12px rgba(201, 169, 110, 0.15);
+}
+
+/* ── Vertical divider ── */
+.about-divider {
+  width: 1px;
+  height: 300px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--border) 20%,
+    var(--border) 80%,
+    transparent
+  );
+}
+
+/* ── Stats ── */
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  animation: fadeUp 0.7s 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .stat {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 30px 40px;
-  border-radius: 15px;
-  backdrop-filter: blur(10px);
-  transition: 0.3s ease;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.6rem 1.4rem;
+  position: relative;
+  overflow: hidden;
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s,
+    transform 0.25s;
+}
+
+.stat::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0;
+  transition: opacity 0.25s;
 }
 
 .stat:hover {
-  transform: translateY(-8px);
-  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(201, 169, 110, 0.3);
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(201, 169, 110, 0.07);
+  transform: translateY(-3px);
+}
+
+.stat:hover::before {
+  opacity: 0.6;
 }
 
 .stat h2 {
+  font-family: "Playfair Display", serif;
   font-size: 2rem;
-  color: #00f5ff;
-  margin-bottom: 10px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 0.4rem;
 }
 
 .stat p {
-  font-size: 1rem;
-  color: #ffffffaa;
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .about-text h1 {
-    font-size: 2rem;
+/* ── Animation ── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
   }
 
-  .about-text p {
-    font-size: 1rem;
+  .about-divider {
+    display: none;
+  }
+
+  .about-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .about {
+    padding: 4rem 1.2rem;
+  }
+
+  .about-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .about-badges {
+    flex-direction: column;
   }
 }

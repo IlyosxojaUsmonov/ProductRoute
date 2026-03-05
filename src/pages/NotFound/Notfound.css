@@ -1,65 +1,179 @@
-/* ===== SECTION ===== */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap");
+
+:root {
+  --bg: #0a0a0f;
+  --surface: #111118;
+  --border: rgba(255, 255, 255, 0.07);
+  --accent: #c9a96e;
+  --accent-glow: rgba(201, 169, 110, 0.3);
+  --text-primary: #f0ede8;
+  --text-muted: rgba(240, 237, 232, 0.45);
+}
+
+/* ── Section ── */
 .notfound {
-  height: 100vh;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
+  min-height: 100vh;
   display: flex;
+  align-items: center;
   justify-content: center;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(
+      ellipse 70% 60% at 50% 50%,
+      rgba(201, 169, 110, 0.07) 0%,
+      transparent 65%
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='0.5' fill='rgba(255,255,255,0.04)'/%3E%3C/svg%3E");
+  font-family: "DM Sans", sans-serif;
+  padding: 2rem 1.5rem;
+  overflow: hidden;
+}
+
+/* ── Container ── */
+.notfound-container {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 20px;
-  color: white;
+  gap: 1.2rem;
+  animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* ===== CONTAINER ===== */
-.notfound-container {
-  max-width: 600px;
-  animation: fadeIn 1s ease-in-out;
-}
-
-/* ===== 404 TEXT ===== */
+/* ── 404 number ── */
 .error-code {
-  font-size: 8rem;
-  font-weight: 800;
-  background: linear-gradient(90deg, #00f5ff, #4facfe);
+  font-family: "Playfair Display", serif;
+  font-size: clamp(7rem, 20vw, 13rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  background: linear-gradient(
+    160deg,
+    var(--accent) 0%,
+    rgba(201, 169, 110, 0.3) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 10px;
+  background-clip: text;
+  filter: drop-shadow(0 0 40px var(--accent-glow));
+  position: relative;
+  animation: fadeUp 0.7s 0.05s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+.error-code::after {
+  content: "404";
+  position: absolute;
+  inset: 0;
+  font-family: "Playfair Display", serif;
+  font-size: inherit;
+  font-weight: 700;
+  letter-spacing: inherit;
+  line-height: inherit;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px rgba(201, 169, 110, 0.15);
+  background: none;
+  filter: none;
+  transform: translate(3px, 3px);
+  z-index: -1;
+}
+
+/* ── Divider ── */
+.notfound-container h2::before {
+  content: "✦  ✦  ✦";
+  display: block;
+  font-size: 0.65rem;
+  color: var(--accent);
+  letter-spacing: 0.4em;
+  opacity: 0.6;
+  margin-bottom: 0.8rem;
+}
+
+/* ── Heading ── */
 .notfound-container h2 {
-  font-size: 2rem;
-  margin-bottom: 15px;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  animation: fadeUp 0.6s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* ── Description ── */
 .notfound-container p {
-  font-size: 1rem;
-  color: #ffffffcc;
-  margin-bottom: 30px;
-  line-height: 1.6;
+  font-size: 0.92rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  line-height: 1.75;
+  max-width: 400px;
+  letter-spacing: 0.01em;
+  animation: fadeUp 0.6s 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* ===== BUTTON ===== */
+/* ── Button ── */
 .home-btn {
-  display: inline-block;
-  padding: 12px 28px;
-  border-radius: 30px;
-  background: linear-gradient(90deg, #00f5ff, #4facfe);
-  color: #000;
-  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+  padding: 0.9rem 2.2rem;
+  background: var(--accent);
+  color: #0a0a0f;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
   text-decoration: none;
-  transition: 0.3s ease;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.2s,
+    box-shadow 0.25s,
+    filter 0.2s;
+  animation: fadeUp 0.6s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.home-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.18) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.home-btn::after {
+  content: "←";
+  font-size: 1rem;
+  order: -1;
+  transition: transform 0.2s;
 }
 
 .home-btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0, 245, 255, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px var(--accent-glow);
+  filter: brightness(1.08);
 }
 
-/* ===== ANIMATION ===== */
-@keyframes fadeIn {
+.home-btn:hover::before {
+  opacity: 1;
+}
+.home-btn:hover::after {
+  transform: translateX(-3px);
+}
+.home-btn:active {
+  transform: translateY(0);
+  filter: brightness(0.94);
+}
+
+/* ── Animation ── */
+@keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -67,13 +181,10 @@
   }
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .error-code {
-    font-size: 5rem;
-  }
-
-  .notfound-container h2 {
-    font-size: 1.5rem;
+/* ── Responsive ── */
+@media (max-width: 420px) {
+  .home-btn {
+    width: 100%;
+    justify-content: center;
   }
 }

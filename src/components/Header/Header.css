@@ -1,81 +1,147 @@
-/* ===== HEADER ===== */
-.header {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap");
+
+:root {
+  --bg: #0a0a0f;
+  --surface: #111118;
+  --border: rgba(255, 255, 255, 0.07);
+  --accent: #c9a96e;
+  --accent-glow: rgba(201, 169, 110, 0.3);
+  --text-primary: #f0ede8;
+  --text-muted: rgba(240, 237, 232, 0.45);
 }
 
-/* ===== CONTAINER ===== */
+/* ── Header ── */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  font-family: "DM Sans", sans-serif;
+  animation: slideDown 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* bottom golden line */
+.header::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.4;
+}
+
+/* ── Container ── */
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 18px 20px;
+  padding: 0 2rem;
+  height: 64px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
-/* ===== LOGO ===== */
+/* ── Logo ── */
 .logo {
-  font-size: 1.6rem;
+  font-family: "Playfair Display", serif;
+  font-size: 1.45rem;
   font-weight: 700;
-  background: linear-gradient(90deg, #00f5ff, #4facfe);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
   cursor: pointer;
+  position: relative;
+  transition: color 0.25s;
 }
 
-/* ===== NAV ===== */
+.logo::before {
+  content: "✦";
+  font-family: sans-serif;
+  font-size: 0.7rem;
+  color: var(--accent);
+  margin-right: 0.4rem;
+  vertical-align: middle;
+  opacity: 0.85;
+}
+
+.logo:hover {
+  color: var(--accent);
+}
+
+/* ── Nav ── */
 .nav {
   display: flex;
-  gap: 40px;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 .nav a {
   position: relative;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.88rem;
+  font-weight: 400;
+  color: var(--text-muted);
   text-decoration: none;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #ffffffcc;
-  transition: 0.3s ease;
+  letter-spacing: 0.02em;
+  border-radius: 8px;
+  transition:
+    color 0.25s,
+    background 0.25s;
 }
 
-/* Hover effect */
 .nav a:hover {
-  color: #ffffff;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
 }
 
-/* Underline animation */
-.nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 0%;
-  height: 2px;
-  background: linear-gradient(90deg, #00f5ff, #4facfe);
-  transition: 0.3s ease;
-}
-
-.nav a:hover::after {
-  width: 100%;
-}
-
-/* Active link */
+/* active link */
 .nav a.active {
-  color: #ffffff;
+  color: var(--accent);
+  background: rgba(201, 169, 110, 0.08);
 }
 
 .nav a.active::after {
-  width: 100%;
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 1.5px;
+  background: var(--accent);
+  border-radius: 2px;
+  box-shadow: 0 0 6px var(--accent-glow);
 }
 
-/* Page content shift (fixed header uchun) */
-body {
-  padding-top: 90px;
+/* ── Animation ── */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .container {
+    padding: 0 1.2rem;
+    height: 56px;
+  }
+
+  .nav {
+    gap: 0;
+  }
+
+  .nav a {
+    font-size: 0.82rem;
+    padding: 0.4rem 0.6rem;
+  }
 }

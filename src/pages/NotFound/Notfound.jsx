@@ -13,7 +13,7 @@ function Notfound() {
           tashlangan.
         </p>
 
-        <Link to="/" className="home-btn">
+        <Link to="/home" className="home-btn">
           Back To Home
         </Link>
       </div>
